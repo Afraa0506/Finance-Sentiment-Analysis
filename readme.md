@@ -1,0 +1,108 @@
+# 📈 Finance Sentiment Analysis App
+
+A complete NLP project that predicts the sentiment of **financial text** using a **TF-IDF Vectorizer** and a **Linear SVC** model.
+This project includes:
+
+* 🧠 **ML Model** (TF-IDF + Linear SVC)
+* ⚡ **FastAPI Backend** for prediction API
+* 🎨 **Streamlit Web UI** with custom styling
+* 📁 Clean folder structure for deployment
+
+---
+
+## 🚀 Features
+
+✔ Classifies financial statements into **Positive**, **Neutral**, or **Negative**
+✔ Uses **TF-IDF** features
+✔ Model trained using **Linear SVC**
+✔ FastAPI endpoint for external apps
+✔ Beautiful Streamlit interface
+✔ Real-time predictions
+✔ Finance-friendly, colorful UI
+
+---
+
+
+## 🧠 Model Details
+
+* **Vectorizer:** TF-IDF (unigrams + bigrams)
+* **Classifier:** Linear Support Vector Classifier (Linear SVC)
+* **Classes:**
+
+  * `0` → Negative
+  * `1` → Neutral
+  * `2` → Positive
+
+---
+
+## 🏗️ How to Install
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Run the FastAPI Backend
+
+```bash
+uvicorn main:app --reload
+```
+
+API will run at:
+
+```
+http://127.0.0.1:8000/predict
+```
+
+### Example Request (JSON)
+
+```json
+{
+  "text": "The company's earnings improved significantly this quarter."
+}
+```
+
+---
+
+## 🌐 Run the Streamlit App
+
+```bash
+streamlit run app.py
+```
+
+This opens the UI in your browser.
+
+---
+
+## 🖼️ UI Preview
+
+* Custom background
+* Pastel finance-themed colors
+* Banner image
+* Styled buttons and text
+
+---
+
+## 📊 Dataset Used
+
+**Financial PhraseBank** — a popular dataset for financial sentiment analysis containing sentences labeled as Positive, Neutral, or Negative.
+
+---
+
+## 📌 Usage
+
+Ideal for:
+
+* Stock market reports
+* Financial news sentiment
+* Business document classification
+* Market analysis dashboards
+
+---
+
+## Screenshots
+
+
+
+---
