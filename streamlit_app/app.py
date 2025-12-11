@@ -3,10 +3,10 @@ import pickle
 import re
 from PIL import Image
 
-with open("../model/sentiment_model.pkl", "rb") as f:
+with open("api/model/sentiment_model.pkl", "rb") as f:
     model = pickle.load(f)
 
-with open("../model/tfidf_vectorizer.pkl", "rb") as f:
+with open("api/model/tfidf_vectorizer.pkl", "rb") as f:
     tfidf = pickle.load(f)
 
 def clean_text(text):
@@ -73,7 +73,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 try:
-    image = Image.open("../assets/stock_market.jpg")
+    image = Image.open("assets/stock_market.jpg")
     st.image(image, width=700)
 except:
     pass  
