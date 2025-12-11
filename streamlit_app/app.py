@@ -1,13 +1,9 @@
 import streamlit as st
-import pickle
 import re
 from PIL import Image
+import requests
 
-with open("api/model/sentiment_model.pkl", "rb") as f:
-    model = pickle.load(f)
-
-with open("api/model/tfidf_vectorizer.pkl", "rb") as f:
-    tfidf = pickle.load(f)
+BACKEND_URL = "https://finance-sentiment-analysis-l5nk.onrender.com/predict"
 
 def clean_text(text):
     text = text.lower()
@@ -92,13 +88,23 @@ if st.button("Analyze Statement"):
         st.warning("Please enter some text.")
     else:
         cleaned = clean_text(user_input)
-        vec = tfidf.transform([cleaned])
-        pred = model.predict(vec)[0]
-        sentiment = reverse_map[pred]
 
-        if sentiment == "positive":
-            st.success(f"Sentiment: **{sentiment.upper()}** 🟢")
-        elif sentiment == "neutral":
-            st.info(f"Sentiment: **{sentiment.upper()}** ⚪")
-        else:
-            st.error(f"Sentiment: **{sentiment.upper()}** 🔴")
+        try:
+            response = requests.post(
+                BACKEND_URL,
+                json={"text": cleaned},
+                timeout=10
+            )
+            if response.status_code == 200:
+                data = response.json()
+                sentiment = data.get("sentiment", "neutral")
+                if sentiment == "positive":
+                    st.success(f"Sentiment: **{sentiment.upper()}** 🟢")
+                elif sentiment == "neutral":
+                    st.info(f"Sentiment: **{sentiment.upper()}** ⚪")
+                else:
+                    st.error(f"Sentiment: **{sentiment.upper()}** 🔴")
+            else:
+                st.error("Backend error. Please try again later.")
+        except Exception as e:
+            st.error(f"Error connecting to backend: {e}")
