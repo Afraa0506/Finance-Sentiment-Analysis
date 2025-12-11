@@ -5,10 +5,10 @@ import uvicorn
 import re
 import string
 
-with open("../model/sentiment_model.pkl", "rb") as f:
+with open("model/sentiment_model.pkl", "rb") as f:
     model = pickle.load(f)
 
-with open("../model/tfidf_vectorizer.pkl", "rb") as f:
+with open("model/tfidf_vectorizer.pkl", "rb") as f:
     tfidf = pickle.load(f)
 
 def clean_text(text):
